@@ -84,9 +84,13 @@ function poll(cb)
         var totalWorkers =  (current['BusyWorkers'] + current['IdleWorkers']) || 1;
         var busyRatio = current['BusyWorkers'] / totalWorkers;
 
-        console.log('APACHE_REQUESTS %d %s', diff(current['Total Accesses'], _previous['Total Accesses']), _param.source);
-        console.log('APACHE_BYTES %d %s', diff(current['Total kBytes'], _previous['Total kBytes']), _param.source);
-        console.log('APACHE_BYTES_PER_REQUEST %d %s', current['BytesPerReq'], _param.source);
+        var requests = diff(current['Total Accesses'], _previous['Total Accesses']);
+        var bytes = diff(current['Total kBytes'], _previous['Total kBytes']) * 1024;
+        var bytesPerReq = (requests) ? bytes/requests : 0;
+
+        console.log('APACHE_REQUESTS %d %s', requests, _param.source);
+        console.log('APACHE_BYTES %d %s', bytes, _param.source);
+        console.log('APACHE_BYTES_PER_REQUEST %d %s', bytesPerReq, _param.source);
         console.log('APACHE_CPU %d %s', current['CPULoad'], _param.source);
         console.log('APACHE_BUSY_WORKERS %d %s', current['BusyWorkers'], _param.source);
         console.log('APACHE_IDLE_WORKERS %d %s', current['IdleWorkers'], _param.source);
