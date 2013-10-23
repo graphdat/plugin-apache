@@ -2,8 +2,6 @@ var _os = require('os');
 var _param = require('./param.json');
 var _request = require('request');
 
-var _IGNORE = ['Uptime', 'ReqPerSec', 'BytesPerSec', 'Scoreboard']; // Apache stats to ignore
-
 var _httpOptions; // username/password options for the URL
 var _previous = {}; // remember the previous poll data so we can provide proper counts
 
@@ -28,6 +26,9 @@ if (_param.username)
 
 // If we do not have a source, we prefix everything with the servers hostname
 _param.source = (_param.source || _os.hostname()).trim();
+
+// If you do not have a poll intevarl, use 1000 as the default
+_param.pollInterval = _param.pollInterval || 1000;
 
 // get the natural difference between a and b
 function diff(a, b)
@@ -69,8 +70,6 @@ function poll(cb)
             var key = data[0].trim();
             var value = data[1];
 
-            if (data.length !== 2 || _IGNORE.indexOf(key) !== -1)
-                return;
             if (value == null || value === '')
                 return;
 
@@ -81,8 +80,8 @@ function poll(cb)
                 current[key] = value.trim();
         });
 
-        var totalWorkers =  (current['BusyWorkers'] + current['IdleWorkers']) || 1;
-        var busyRatio = current['BusyWorkers'] / totalWorkers;
+        var totalWorkers =  (current['BusyWorkers'] || 0) + (current['IdleWorkers'] || 0);
+        var busyRatio = (totalWorkers) ? current['BusyWorkers'] / totalWorkers : 0;
 
         var requests = diff(current['Total Accesses'], _previous['Total Accesses']);
         var bytes = diff(current['Total kBytes'], _previous['Total kBytes']) * 1024;
@@ -91,7 +90,7 @@ function poll(cb)
         console.log('APACHE_REQUESTS %d %s', requests, _param.source);
         console.log('APACHE_BYTES %d %s', bytes, _param.source);
         console.log('APACHE_BYTES_PER_REQUEST %d %s', bytesPerReq, _param.source);
-        console.log('APACHE_CPU %d %s', current['CPULoad'], _param.source);
+        console.log('APACHE_CPU %d %s', current['CPULoad'] || 0, _param.source);
         console.log('APACHE_BUSY_WORKERS %d %s', current['BusyWorkers'], _param.source);
         console.log('APACHE_IDLE_WORKERS %d %s', current['IdleWorkers'], _param.source);
         console.log('APACHE_BUSY_RATIO %d %s', busyRatio, _param.source);
