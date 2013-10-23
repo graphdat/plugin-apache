@@ -15,6 +15,10 @@
         "APACHE_BUSY_RATIO"
     ],
 
+    "dashboards" : [
+        { "name": "apache", "layout": "d-w=4&d-h=2&d-pad=5&d-bg=none&d-sg-cpu=0-0-1-1-t&d-g-APACHE_CPU=0-0-1-1-b&d-g-APACHE_REQUESTS=1-0-1-1&d-g-APACHE_BUSY_RATIO=0-1-1-1&d-sg-no=3-1-1-1&d-sg-ni=2-1-1-1&d-g-APACHE_BYTES=3-0-1-1&d-g-APACHE_BYTES_PER_REQUEST=2-0-1-1&d-g-APACHE_BUSY_WORKERS=1-1-1-1"}
+    ],
+
     "paramSchema" : [
         {
             "title" : "Server-Status URL",
