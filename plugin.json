@@ -1,0 +1,45 @@
+{
+    "description" : "Displays important apache metrics",
+    "icon" : "icon.png",
+    "command" : "node index.js",
+    "postExtract" : "npm install",
+    "ignore" : "node_modules",
+
+    "metrics" : [
+        "APACHE_REQUESTS",
+        "APACHE_BYTES",
+        "APACHE_BYTES_PER_REQUEST",
+        "APACHE_CPU",
+        "APACHE_BUSY_WORKERS",
+        "APACHE_IDLE_WORKERS",
+        "APACHE_BUSY_RATIO"
+    ],
+
+    "paramSchema" : [
+        {
+            "title" : "Server-Status URL",
+            "name" : "url",
+            "description" : "The URL endpoint of where the Apache statistics are hosted.",
+            "type" : "string",
+            "default" : "http://localhost/server-status"
+        },
+        {
+            "title" : "Username",
+            "name" : "username",
+            "description" : "If the endpoint is password protected, what username should graphdat use when calling it.",
+            "type" : "string"
+        },
+        {
+            "title" : "Password",
+            "name" : "password",
+            "description" : "If the endpoint is password protected, what password should graphdat use when calling it.",
+            "type" : "password"
+        },
+        {
+            "title" : "Source",
+            "name" : "source",
+            "description" : "The Source to display in the legend for the apache data.  It will default to the hostname of the server",
+            "type" : "string"
+        }
+    ]
+}
