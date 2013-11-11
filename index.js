@@ -1,6 +1,7 @@
 var _os = require('os');
 var _param = require('./param.json');
 var _request = require('request');
+var _tools = require('graphdat-plugin-tools');
 
 var _httpOptions; // username/password options for the URL
 var _previous = {}; // remember the previous poll data so we can provide proper counts
