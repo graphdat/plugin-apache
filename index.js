@@ -93,11 +93,14 @@ function poll(cb)
             current['totalBytes'] = _previous['totalBytes'];
 
         var bytesPerReq = (requests) ? current['totalBytes']/requests : 0;
+        var cpuLoad = current['CPULoad'] || 0;
+        if (cpuLoad > 1)
+            cpuLoad /= 100;
 
         console.log('APACHE_REQUESTS %d %s', requests, _param.source);
         console.log('APACHE_BYTES %d %s', current['totalBytes'], _param.source);
         console.log('APACHE_BYTES_PER_REQUEST %d %s', bytesPerReq, _param.source);
-        console.log('APACHE_CPU %d %s', current['CPULoad'] || 0, _param.source);
+        console.log('APACHE_CPU %d %s', cpuLoad, _param.source);
         console.log('APACHE_BUSY_WORKERS %d %s', current['BusyWorkers'], _param.source);
         console.log('APACHE_IDLE_WORKERS %d %s', current['IdleWorkers'], _param.source);
         console.log('APACHE_BUSY_RATIO %d %s', busyRatio, _param.source);
