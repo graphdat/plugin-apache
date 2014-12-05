@@ -1,40 +1,73 @@
-# Apache Graphdat Plugin
+Boundary Apache HTTP Server Plugin
+==================================
+Collects metrics from a Apache HTTP server instance.
 
-#### Tracks the following metrics for [apache](http://httpd.apache.org/)
+Platforms
+---------
+- Windows
+- Linux
+- OS X
+- SmartOS
 
-* APACHE_REQUESTS - The number of Apache `Accesses`
-* APACHE_BYTES - Bytes transfered
-* APACHE_BYTES_PER_REQUEST - Average bytes per request
-* APACHE_CPU - CPU
-* APACHE_BUSY_WORKERS - The count of busy workers
-* APACHE_IDLE_WORKERS - The count of idle workers
-* APACHE_BUSY_RATIO - The ratio of busy / total workers
+Prerequisites
+-------------
+- node version 0.8.0 or later
+- Apache HTTP Server must be configured to run the `server-stats` module. Detailed instructions are provided below.
 
-#### Pre Reqs
 
-To get statistics from apache, you need to enable the `server-stats` module.  In your `httpd.conf` add the following block
+#### Configuration
+The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
 
-	<Location /server-status>
+#### Enable the `server-status` Module
+
+1. Modify the Apache HTTP Server `httpd.conf` by adding the following:
+     ```xml
+     <Location /server-status>
 		SetHandler server-status
-	</Location>
+	 </Location>
+     ```
 
-To make it a little more secure, add a username and password.  First by creating the file `sudo htpasswd -c /etc/apache2/passwd-server-status someusername`.   And then update your `httpd.conf` file with your newly created password file.
-
+#### Secure the EndPoint with a User Name and Password
+1. Create as password file to secure the endpoint. The example shown here is using the path `/etc/httpd/my_password_file`.
+     ```
+     $ sudo htpasswd -c /etc/httpd/my_password_file
+     ```
+2. Enable authentication by modifying the `<Location/>` added previously as shown here :
+     ```xml
 	<Location /server-status>
 		SetHandler server-status
 		AuthType basic
 		AuthName "Apache status"
-		AuthUserFile /etc/apache2/passwd-server-status
+		AuthUserFile /etc/httpd/my_password_file
 		Require valid-user
 	</Location>
+    ```
+3. Restart Apache HTTP server reload the `httpd.conf` configuration.
+4. Verify that statistics are being collected by visiting http://yourserver.com/server-status
 
-Once you make the update, reload your apache configuration
-	`sudo service apache2 restart`
 
-Check that your stats are coming through correctly by going to http://yourserver.com/server-status
+### Plugin Configuration
 
-### Installation & Configuration
+|Field                                    |Description                                    |
+|:----------------------------------------------|:--------------------------------------------|
+|Server-Status URL| The URL endpoint of where the Apache HTTP server statistics are hosted.|
+|Username |If the URL is password protected, what username should the plugin use to authenticate|
+|Password||If the URL is password protected, what password should the plugin use to authenticate|
+|Source | Name identifying the specific instance of Apache HTTP server which is displayed in dashboards|
 
-* The `source` to prefix the display in the legend for the apache data.  It will default to the hostname of the server.
-* The `url` is the full `server-status` URL from above that you just finished testing.
-* If the `url` is password protected, what `username` and `password` combination did you use so we can make the call
+
+#### Metrics Collected
+Tracks the following metrics for [apache](http://httpd.apache.org/)
+
+|Metric Name              |Description                                      |
+|:------------------------|:------------------------------------------------|
+|Apache Requests          |The number of Apache Accesses                    |
+|Apache Total Bytes       |bytes transferred                                |
+|Apache Bytes per Request |average bytes per request                        |
+|Apache CPU               |                                                 |
+|Apache Busy Workers      |the number of busy workers                       |
+|Apache Idle Workers      |the number of idle workers                       |
+|Apache busy to idle ratio|The ratio of busy workers / (busy + idle workers)|
+
+
+
