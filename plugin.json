@@ -1,5 +1,5 @@
 {
-    "description" : "Displays important apache metrics",
+    "description" : "Collects metrics from a Apache HTTP Server",
     "icon" : "icon.png",
     "command" : "node index.js",
     "postExtract" : "npm install",
@@ -23,26 +23,26 @@
         {
             "title" : "Server-Status URL",
             "name" : "url",
-            "description" : "The URL endpoint of where the Apache statistics are hosted.",
+            "description" : "The URL endpoint of where the Apache HTPP server statistics are hosted.",
             "type" : "string",
             "default" : "http://localhost/server-status"
         },
         {
             "title" : "Username",
             "name" : "username",
-            "description" : "If the endpoint is password protected, what username should graphdat use when calling it.",
+            "description" : "If the URL is password protected, what username should the plugin use to authenticate",
             "type" : "string"
         },
         {
             "title" : "Password",
             "name" : "password",
-            "description" : "If the endpoint is password protected, what password should graphdat use when calling it.",
+            "description" : "If the URL is password protected, what password should the plugin use to authenticate",
             "type" : "password"
         },
         {
             "title" : "Source",
             "name" : "source",
-            "description" : "The Source to display in the legend for the apache data.  It will default to the hostname of the server",
+            "description" : "Name identifying the specific instance of Apache HTTP server which is displayed in dashboards",
             "type" : "string"
         }
     ]
