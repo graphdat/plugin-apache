@@ -30,7 +30,7 @@
         {
             "title" : "Username",
             "name" : "username",
-            "description" : "If the URL is password protected, what username should the plugin use to authenticate',
+            "description" : "If the URL is password protected, what username should the plugin use to authenticate",
             "type" : "string"
         },
         {

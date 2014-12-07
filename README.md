@@ -1,24 +1,21 @@
 Boundary Apache HTTP Server Plugin
-==================================
+----------------------------------
 Collects metrics from a Apache HTTP server instance.
 
-Platforms
----------
+### Platforms
 - Windows
 - Linux
 - OS X
 - SmartOS
 
-Prerequisites
--------------
+### Prerequisites
 - node version 0.8.0 or later
 - Apache HTTP Server must be configured to run the `server-stats` module. Detailed instructions are provided below.
 
-
-#### Configuration
+#### Plugin Setup
 The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
 
-#### Enable the `server-status` Module
+##### Enable the `server-status` Module
 
 1. Modify the Apache HTTP Server `httpd.conf` by adding the following:
      ```xml
@@ -27,7 +24,7 @@ The Boundary Apache HTTP Server plugin depends on the `server-stats` module for 
 	 </Location>
      ```
 
-#### Secure the EndPoint with a User Name and Password
+##### Secure the EndPoint with a User Name and Password
 1. Create as password file to secure the endpoint. The example shown here is using the path `/etc/httpd/my_password_file`.
      ```
      $ sudo htpasswd -c /etc/httpd/my_password_file
@@ -45,18 +42,17 @@ The Boundary Apache HTTP Server plugin depends on the `server-stats` module for 
 3. Restart Apache HTTP server reload the `httpd.conf` configuration.
 4. Verify that statistics are being collected by visiting http://yourserver.com/server-status
 
-
 ### Plugin Configuration
 
 |Field                                    |Description                                    |
 |:----------------------------------------------|:--------------------------------------------|
 |Server-Status URL| The URL endpoint of where the Apache HTTP server statistics are hosted.|
 |Username |If the URL is password protected, what username should the plugin use to authenticate|
-|Password||If the URL is password protected, what password should the plugin use to authenticate|
+|Password|If the URL is password protected, what password should the plugin use to authenticate|
 |Source | Name identifying the specific instance of Apache HTTP server which is displayed in dashboards|
 
 
-#### Metrics Collected
+### Metrics Collected
 Tracks the following metrics for [apache](http://httpd.apache.org/)
 
 |Metric Name              |Description                                      |
@@ -68,6 +64,4 @@ Tracks the following metrics for [apache](http://httpd.apache.org/)
 |Apache Busy Workers      |the number of busy workers                       |
 |Apache Idle Workers      |the number of idle workers                       |
 |Apache busy to idle ratio|The ratio of busy workers / (busy + idle workers)|
-
-
 
