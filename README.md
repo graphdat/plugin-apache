@@ -42,14 +42,15 @@ The Boundary Apache HTTP Server plugin depends on the `server-stats` module for 
 3. Restart Apache HTTP server reload the `httpd.conf` configuration.
 4. Verify that statistics are being collected by visiting http://yourserver.com/server-status
 
-### Plugin Configuration
+### Plugin Configuration Fields
 
-|Field                                    |Description                                    |
-|:----------------------------------------------|:--------------------------------------------|
-|Server-Status URL| The URL endpoint of where the Apache HTTP server statistics are hosted.|
-|Username |If the URL is password protected, what username should the plugin use to authenticate|
-|Password|If the URL is password protected, what password should the plugin use to authenticate|
-|Source | Name identifying the specific instance of Apache HTTP server which is displayed in dashboards|
+|Field Name       |Description                                                                                  |
+|:----------------|:--------------------------------------------------------------------------------------------|
+|Server-Status URL|The URL endpoint of where the Apache HTPP server statistics are hosted.                      |
+|Username         |If the URL is password protected, what username should the plugin use to authenticate        |
+|Password         |If the URL is password protected, what password should the plugin use to authenticate        |
+|Source           |Name identifying the specific instance of Apache HTTP server which is displayed in dashboards|
+
 
 
 ### Metrics Collected
