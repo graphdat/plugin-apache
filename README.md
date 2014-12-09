@@ -10,6 +10,7 @@ Collects metrics from a Apache HTTP server instance.
 
 ### Prerequisites
 - node version 0.8.0 or later
+- npm version 1.4.21 or later
 - Apache HTTP Server must be configured to run the `server-stats` module. Detailed instructions are provided below.
 
 #### Plugin Setup
