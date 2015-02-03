@@ -2,19 +2,23 @@ Boundary Apache HTTP Server Plugin
 ----------------------------------
 Collects metrics from a Apache HTTP server instance.
 
-### Platforms
-- Windows
-- Linux
-- OS X
-- SmartOS
-
 ### Prerequisites
-- node version 0.8.0 or later
-- npm version 1.4.21 or later
-- Apache HTTP Server must be configured to run the `server-stats` module. Detailed instructions are provided below.
+
+|     OS    | Linux | Windows | SmartOS | OS X |
+|:----------|:-----:|:-------:|:-------:|:----:|
+| Supported |   v   |    v    |    v    |  v   |
+
+
+|  Runtime | node.js | Python | Java |
+|:---------|:-------:|:------:|:----:|
+| Required |    +    |        |      |
+
+[How to install node.js?](https://help.boundary.com/hc/articles/202360701)
+
+Apache HTTP Server must be configured to run the `server-stats` module. 
 
 #### Plugin Setup
-The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
+- The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
 
 ##### Enable the `server-status` Module
 
