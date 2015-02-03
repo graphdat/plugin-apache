@@ -17,7 +17,7 @@ Collects metrics from a Apache HTTP server instance.
 
 Apache HTTP Server must be configured to run the `server-stats` module. 
 
-#### Plugin Setup
+### Plugin Setup
 - The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
 
 ##### Enable the `server-status` Module
@@ -56,8 +56,6 @@ Apache HTTP Server must be configured to run the `server-stats` module.
 |Password         |If the URL is password protected, what password should the plugin use to authenticate        |
 |Source           |Name identifying the specific instance of Apache HTTP server which is displayed in dashboards|
 
-
-
 ### Metrics Collected
 Tracks the following metrics for [apache](http://httpd.apache.org/)
 
@@ -70,4 +68,3 @@ Tracks the following metrics for [apache](http://httpd.apache.org/)
 |Apache Busy Workers      |the number of busy workers                       |
 |Apache Idle Workers      |the number of idle workers                       |
 |Apache busy to idle ratio|The ratio of busy workers / (busy + idle workers)|
-
