@@ -1,6 +1,6 @@
 Boundary Apache HTTP Server Plugin
 ----------------------------------
-Collects metrics from a Apache HTTP server instance.
+Collects metrics from a Apache HTTP server instance. See video [walkthrough](https://help.boundary.com/hc/articles/201991151).
 
 ### Prerequisites
 
