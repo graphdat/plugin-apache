@@ -13,9 +13,8 @@ Collects metrics from a Apache HTTP server instance.
 |:---------|:-------:|:------:|:----:|
 | Required |    +    |        |      |
 
-[How to install node.js?](https://help.boundary.com/hc/articles/202360701)
-
-Apache HTTP Server must be configured to run the `server-stats` module. 
+- [How to install node.js?](https://help.boundary.com/hc/articles/202360701)
+- Apache HTTP Server must be configured to run the `server-stats` module. 
 
 ### Plugin Setup
 - The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
