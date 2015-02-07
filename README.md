@@ -45,6 +45,17 @@ Collects metrics from a Apache HTTP server instance. See video [walkthrough](htt
     ```
 3. Restart Apache HTTP server reload the `httpd.conf` configuration.
 4. Verify that statistics are being collected by visiting http://yourserver.com/server-status
+5. To also capture the 'requests per second' metric, add `ExtendedStatus On` outside of your `<Location />` block:
+     ```xml
+	<Location /server-status>
+		SetHandler server-status
+		AuthType basic
+		AuthName "Apache status"
+		AuthUserFile /etc/httpd/my_password_file
+		Require valid-user
+	</Location>
+	ExtendedStatus On
+    ```
 
 ### Plugin Configuration Fields
 
