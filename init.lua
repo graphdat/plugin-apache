@@ -135,7 +135,7 @@ end
 
 
 
-print("_bevent:NGINX plugin up : version 1.0|t:info|tags:apache, plugin")
+print("_bevent:Apache plugin up : version 1.0|t:info|tags:apache, plugin")
 
 timer.setInterval(pollInterval, function ()
 
