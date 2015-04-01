@@ -5,9 +5,10 @@ local https    = require('https')
 local boundary = require('boundary')
 local io       = require('io')
 local _url     = require('_url')
-require('_strings')
+local String   = require('_strings')
 
 local __pgk        = "BOUNDARY APACHE"
+local __ver        = "Version 1.0"
 local _previous    = {}
 local url          = "http://127.0.0.1/server-status"
 local pollInterval = 1000
@@ -26,7 +27,7 @@ if (boundary.param ~= nil) then
 end
 
 function berror(err)
-  if err then process.stderr:write(string.format("%s ERROR: %s", __pgk, tostring(err))) return err end
+  if err then print(string.format("_bevent:%s : %s ERROR|t:error|s:%s|tags:haproxy,lua,plugin|m:%s", __pgk, __ver, source, tostring(err))) return err end
 end
 
 --- do a http(s) request
@@ -135,7 +136,7 @@ end
 
 
 
-print("_bevent:Apache plugin up : version 1.0|t:info|tags:apache, plugin")
+print(string.format("_bevent:%s : %s UP|t:info|tags:apache, plugin", __pgk, __ver))
 
 timer.setInterval(pollInterval, function ()
 
