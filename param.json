@@ -1,4 +1,4 @@
 {
-   "url": "http://localhost/server-status",
-   "pollInterval": 1000
+   "url": "http://localhost:8787/server-status",
+   "pollInterval": 4000
 }
