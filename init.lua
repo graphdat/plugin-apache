@@ -5,25 +5,25 @@ local WebRequestDataSource = framework.WebRequestDataSource
 local Accumulator = framework.Accumulator
 
 local split = framework.string.split
-local notEmpty = framework.string.notEmpty
-local trim = framework.string.trim 
 local auth = framework.util.auth
 
 local params = framework.params
 params.name = "Boundary Apache Plugin"
 params.version = 1.1
+params.tags = "apache"
 
 local options = url.parse(params.url)
 options.path = options.path .. '?auto' -- server-status?auto for text/plain output
-options.auth = auth(username, password) 
+options.auth = auth(params.username, params.password) 
 --options.wait_for_end = true
 
-local mapping = {}
-mapping['BusyWorkers'] = 'APACHE_BUSY_WORKERS'
-mapping['IdleWorkers'] = 'APACHE_IDLE_WORKERS'
-mapping['Total Accesses'] = 'APACHE_REQUESTS'
-mapping['CPULoad'] = 'APACHE_CPU'
-mapping['Total kBytes'] = 'APACHE_BYTES'
+local mapping = { 
+  ['BusyWorkers'] = 'APACHE_BUSY_WORKERS',
+  ['IdleWorkers'] = 'APACHE_IDLE_WORKERS',
+  ['Total Accesses'] = 'APACHE_REQUESTS',
+  ['CPULoad'] = 'APACHE_CPU',
+  ['Total kBytes'] = 'APACHE_BYTES'
+}
   
 local data_source = WebRequestDataSource:new(options)
 local acc = Accumulator:new()
@@ -40,7 +40,7 @@ function plugin:onParseValues(data, _)
     local val = m[2]
     if (key and val) then
       local metric = mapping[key] 
-      if (metric ~= null) then
+      if metric then
         result[metric] = tonumber(val) or -1
       end
     end
@@ -51,7 +51,7 @@ function plugin:onParseValues(data, _)
   if (cpu_load > 1) then
     cpu_load = cpu_load / 100
   end
-  result['APACHE_CPU'] = cpuLoad
+  result['APACHE_CPU'] = cpu_load
 
   -- Requests calculation
   local requests = acc:accumulate('APACHE_REQUESTS', result['APACHE_REQUESTS']) 
