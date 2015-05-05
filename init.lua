@@ -4,6 +4,7 @@ local Plugin = framework.Plugin
 local WebRequestDataSource = framework.WebRequestDataSource
 local Accumulator = framework.Accumulator
 
+local gsplit = framework.string.gsplit
 local split = framework.string.split
 local auth = framework.util.auth
 
@@ -15,7 +16,7 @@ params.tags = "apache"
 local options = url.parse(params.url)
 options.path = options.path .. '?auto' -- server-status?auto for text/plain output
 options.auth = auth(params.username, params.password) 
---options.wait_for_end = true
+options.wait_for_end = true
 
 local mapping = { 
   ['BusyWorkers'] = 'APACHE_BUSY_WORKERS',
@@ -31,13 +32,11 @@ local acc = Accumulator:new()
 local plugin = Plugin:new(params, data_source)
 function plugin:onParseValues(data, _)
 
-  -- TODO: Use map(), reduce()
   -- Capture metrics
   local result = {}
-  for _, v in ipairs(split(data, "\n")) do
+  for v in gsplit(data, "\n") do
     local m = split(v, ":")
-    local key = m[1]
-    local val = m[2]
+    local key, val = unpack(m)
     if (key and val) then
       local metric = mapping[key] 
       if metric then
