@@ -8,8 +8,10 @@ Collects metrics from a Apache HTTP server instance. See video [walkthrough](htt
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
-#### Boundary Meter Versions V4.0 Or Greater
-(to get the new meter - curl -fsS -d '{"token":"api.<Your API Token Here>"}' -H 'Content-Type: application/json' https://meter.boundary.com/setup_meter > setup_meter.sh && chmod +x setup_meter.sh && ./setup_meter.sh)
+#### Boundary Meter Versions V4.0 Or Later
+
+- To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
+- To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter].
 
 |  Runtime | node.js | Python | Java |
 |:---------|:-------:|:------:|:----:|
