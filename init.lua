@@ -1,5 +1,5 @@
+local framework = require('framework')
 local url = require('url')
-local framework = require('./modules/framework')
 local Plugin = framework.Plugin
 local WebRequestDataSource = framework.WebRequestDataSource
 local Accumulator = framework.Accumulator
@@ -10,7 +10,7 @@ local auth = framework.util.auth
 
 local params = framework.params
 params.name = "Boundary Apache Plugin"
-params.version = 1.1
+params.version = 2.0 
 params.tags = "apache"
 
 local options = url.parse(params.url)
@@ -60,20 +60,20 @@ function plugin:onParseValues(data, _)
   -- Because of the interval cut off lines, on a really slow site you will get 0's
   -- the, use the previous value if that happens
   local lastTotalBytes = acc:get('APACHE_BYTES')
-  local totalBytes = acc:accumulate('APACHE_BYTES', result['APACHE_BYTES'] * 1024)
-  if requests > 0 and totalBytes == 0 then
-      totalBytes = lastTotalBytes
+  local total_bytes = acc:accumulate('APACHE_BYTES', result['APACHE_BYTES'] * 1024)
+  if requests > 0 and total_bytes == 0 then
+      total_bytes = lastTotalBytes
   end
-  result['APACHE_BYTES'] = totalBytes
+  result['APACHE_BYTES'] = total_bytes
 
   -- Total Bytes Per Request calculation
-  local bytesPerReq = (requests > 0) and (totalBytes / requests) or 0
-  result['APACHE_BYTES_PER_REQUEST'] = bytesPerReq
+  local bytes_per_req = (requests > 0) and (total_bytes / requests) or 0
+  result['APACHE_BYTES_PER_REQUEST'] = bytes_per_req
 
   -- Busy Ratio calculation
-  local totalWorkers =  (result['APACHE_BUSY_WORKERS'] or 0) + (result['APACHE_IDLE_WORKERS'] or 0)
-  local busyRatio = totalWorkers and result['APACHE_BUSY_WORKERS'] / totalWorkers or 0
-  result['APACHE_BUSY_RATIO'] = busyRatio
+  local total_workers =  (result['APACHE_BUSY_WORKERS'] or 0) + (result['APACHE_IDLE_WORKERS'] or 0)
+  local busy_ratio = total_workers and result['APACHE_BUSY_WORKERS'] / total_workers or 0
+  result['APACHE_BUSY_RATIO'] = busy_ratio
 
   return result
 end
