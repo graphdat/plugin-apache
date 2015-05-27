@@ -72,6 +72,7 @@ Collects metrics from a Apache HTTP server instance. See video [walkthrough](htt
 |Server-Status URL|The URL endpoint of where the Apache HTPP server statistics are hosted.                      |
 |Username         |If the URL is password protected, what username should the plugin use to authenticate        |
 |Password         |If the URL is password protected, what password should the plugin use to authenticate        |
+|Poll Interval    |How often (in milliseconds) to poll for metrics (default: 1000).      | 
 |Source           |Name identifying the specific instance of Apache HTTP server which is displayed in dashboards|
 
 ### Metrics Collected

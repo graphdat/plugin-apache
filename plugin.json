@@ -42,6 +42,14 @@
             "type" : "password"
         },
         {
+           "title" : "Poll Interval",
+            "name" : "pollInterval",
+            "description" : "The Poll Interval in milliseconds. Ex. 1000",
+            "type" : "number",
+            "default" : 1000,
+            "required" : false
+        },
+        {
             "title" : "Source",
             "name" : "source",
             "description" : "Name identifying the specific instance of Apache HTTP server which is displayed in dashboards",
