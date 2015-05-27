@@ -1,5 +1,6 @@
 Boundary Apache HTTP Server Plugin
-----------------------------------
+==================================
+
 Collects metrics from a Apache HTTP server instance. See video [walkthrough](https://help.boundary.com/hc/articles/201991151).
 
 ### Prerequisites
@@ -9,11 +10,9 @@ Collects metrics from a Apache HTTP server instance. See video [walkthrough](htt
 | Supported |   v   |    v    |    v    |  v   |
 
 #### Boundary Meter Versions V4.0 Or Greater
-(to get the new meter - curl -fsS -d '{"token":"api.<Your API Token Here>"}' -H 'Content-Type: application/json' https://meter.boundary.com/setup_meter > setup_meter.sh && chmod +x setup_meter.sh && ./setup_meter.sh)
 
-|  Runtime | node.js | Python | Java |
-|:---------|:-------:|:------:|:----:|
-| Required |         |        |      |
+- To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
+- To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter]. r
 
 #### Boundary Meter Versions Less Than V4.0
 
@@ -25,9 +24,10 @@ Collects metrics from a Apache HTTP server instance. See video [walkthrough](htt
 - Apache HTTP Server must be configured to run the `server-stats` module. 
 
 ### Plugin Setup
+
 - The Boundary Apache HTTP Server plugin depends on the `server-stats` module for collecting metrics. The sections below provide the procedures to enable and configure the `server-stats` module.
 
-##### Enable the `server-status` Module
+#### Enable the `server-status` Module
 
 1. Modify the Apache HTTP Server `httpd.conf` by adding the following:
      ```xml
@@ -36,7 +36,7 @@ Collects metrics from a Apache HTTP server instance. See video [walkthrough](htt
 	 </Location>
      ```
 
-##### Secure the EndPoint with a User Name and Password
+#### Secure the EndPoint with a User Name and Password
 1. Create as password file to secure the endpoint. The example shown here is using the path `/etc/httpd/my_password_file`.
      ```
      $ sudo htpasswd -c /etc/httpd/my_password_file
@@ -86,3 +86,11 @@ Tracks the following metrics for [apache](http://httpd.apache.org/)
 |Apache Busy Workers      |the number of busy workers                       |
 |Apache Idle Workers      |the number of idle workers                       |
 |Apache busy to idle ratio|The ratio of busy workers / (busy + idle workers)|
+
+### Dashboards
+
+Apache Server
+
+### References
+
+None
