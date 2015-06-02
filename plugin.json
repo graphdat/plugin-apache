@@ -1,4 +1,7 @@
 {
+    "name" : "Boundary Apache Plugin",
+    "version" : "2.0",
+    "tags" : "apache",
     "description" : "Collects metrics from a Apache HTTP Server",
     "icon" : "icon.png",
     "command" : "node index.js",

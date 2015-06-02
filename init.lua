@@ -9,9 +9,6 @@ local split = framework.string.split
 local auth = framework.util.auth
 
 local params = framework.params
-params.name = "Boundary Apache Plugin"
-params.version = 2.0 
-params.tags = "apache"
 
 local options = url.parse(params.url)
 options.path = options.path .. '?auto' -- server-status?auto for text/plain output
