@@ -1,4 +1,7 @@
 {
+    "name" : "Boundary Apache Plugin",
+    "version" : "2.0",
+    "tags" : "apache",
     "description" : "Collects metrics from a Apache HTTP Server",
     "icon" : "icon.png",
     "command" : "node index.js",
@@ -18,7 +21,7 @@
     ],
 
     "dashboards" : [
-        { "name": "apache", "layout": "d-w=4&d-h=2&d-pad=5&d-bg=none&d-sg-cpu=0-0-1-1-t&d-g-APACHE_CPU=0-0-1-1-b&d-g-APACHE_REQUESTS=1-0-1-1&d-g-APACHE_BUSY_RATIO=0-1-1-1&d-sg-no=3-1-1-1&d-sg-ni=2-1-1-1&d-g-APACHE_BUSY_WORKERS=1-1-1-1&d-g-APACHE_BYTES=2-0-1-1&d-g-APACHE_BYTES_PER_REQUEST=3-0-1-1"}
+        { "name": "Apache Server", "layout": "d-w=4&d-h=2&d-pad=5&d-bg=none&d-sg-cpu=0-0-1-1-t&d-g-APACHE_CPU=0-0-1-1-b&d-g-APACHE_REQUESTS=1-0-1-1&d-g-APACHE_BUSY_RATIO=0-1-1-1&d-sg-no=3-1-1-1&d-sg-ni=2-1-1-1&d-g-APACHE_BUSY_WORKERS=1-1-1-1&d-g-APACHE_BYTES=2-0-1-1&d-g-APACHE_BYTES_PER_REQUEST=3-0-1-1"}
     ],
 
     "paramSchema" : [
@@ -40,6 +43,14 @@
             "name" : "password",
             "description" : "If the URL is password protected, what password should the plugin use to authenticate",
             "type" : "password"
+        },
+        {
+           "title" : "Poll Interval",
+            "name" : "pollInterval",
+            "description" : "The Poll Interval in milliseconds. Ex. 1000",
+            "type" : "number",
+            "default" : 1000,
+            "required" : false
         },
         {
             "title" : "Source",
